@@ -1,0 +1,35 @@
+{
+  "name": "airbnb_backend-practice",
+  "version": "1.0.0",
+  "description": "Lemoncode - Backend Practice with PODS Architecture:",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:dev": "nodemon --transpileOnly --esm src/index.ts",
+    "start:local-db": "docker-compose up -d --build",
+    "start": "run-p -l start:dev start:local-db",
+    "start:console-runners": "nodemon --no-stdin --transpileOnly --esm src/console-runners/index.ts",
+    "build": "npm run clean && tsc --project tsconfig.prod.json",
+    "test": "jest -c ./config/test/jest.js",
+    "type-check": "tsc --noEmit --preserveWatchOutput",
+    "type-check:watch": "npm run type-check -- --watch",
+    "test:watch": "npm run test -- --watchAll -i",
+    "clean": "rimraf dist"
+  },
+  "imports": {
+    "#common/*": "./common/*",
+    "#common-app/*": "./common-app/*",
+    "#core/*": "./core/*",
+    "#dals/*": "./dals/*",
+    "#pods/*": "./pods/*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "inquirer": "^9.2.11",
+    "npm-run-all": "^4.1.5"
+  }
+}
